@@ -1,0 +1,126 @@
+<%@ page import="java.sql.*"%>
+
+<%
+String uname = (String)session.getAttribute("username");
+if(uname != null) {
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Class Schedules</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.alphacoders.com/133/1331033.png');
+            background-size: cover;
+            background-position: up center bottom; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+            color: #fff; /* White text color */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value for transparency */
+        }
+        th, td {
+            border: 1px solid rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(34, 34, 34, 0.7); /* Adjust the alpha value for transparency */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(242, 242, 242, 0.5); /* Adjust the alpha value for transparency */
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #666;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .login-link a:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dance Class Schedules</h1>
+    </header>
+    <div class="container">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Class</th>
+                <th>Instructor</th>
+            </tr>
+            <tr>
+                <td>Monday, April 25</td>
+                <td>5:00 PM - 6:30 PM</td>
+                <td>Ballet</td>
+                <td>Emily Smith</td>
+            </tr>
+            <tr>
+                <td>Wednesday, April 27</td>
+                <td>6:00 PM - 7:30 PM</td>
+                <td>Hip Hop</td>
+                <td>John Davis</td>
+            </tr>
+            <tr>
+                <td>Friday, April 29</td>
+                <td>4:30 PM - 6:00 PM</td>
+                <td>Jazz</td>
+                <td>Samantha Johnson</td>
+            </tr>
+            <tr>
+                <td>Tuesday, May 3</td>
+                <td>7:00 PM - 8:30 PM</td>
+                <td>Contemporary</td>
+                <td>Michael Thompson</td>
+            </tr>
+            <tr>
+                <td>Thursday, May 5</td>
+                <td>5:30 PM - 7:00 PM</td>
+                <td>Bollywood</td>
+                <td>Aisha Patel</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+
+<%
+} else {
+    response.sendRedirect("login.html");
+}
+%>

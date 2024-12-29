@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dance Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/premium-photo/ballerina-light-dress-is-dancing-colored-background-with-backlight_298446-467.jpg?w=360');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        select {
+            width: calc(100% - 22px); /* Adjusted to accommodate radio buttons */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .gender-group {
+            margin-bottom: 15px;
+        }
+
+        .gender-group label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 48%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px; /* Added margin */
+            float: left;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #555;
+        }
+
+        input[type="submit"]:focus,
+        input[type="reset"]:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            overflow: hidden;
+        }
+
+        .btn-group input[type="submit"] {
+            float: left;
+            margin-right: 4%;
+        }
+
+        .btn-group input[type="reset"] {
+            float: left;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dance Registration Form</h1>
+    <form name="register" method="post" action="register.jsp" onsubmit="return validateForm()">
+        <label for="fname">Enter Your Full Name:</label>
+        <input type="text" name="fname" id="fname">
+        
+        <label for="age">Enter Your Age:</label>
+        <input type="number" name="age" id="age">
+        
+        <label for="username">Enter Your Username:</label>
+        <input type="text" name="username" id="username">
+        
+        <label for="password">Enter Your Password:</label>
+        <input type="password" name="password" id="password">
+        
+        <div class="gender-group">
+            <label>Choose Gender:</label>
+            <input type="radio" name="gender" id="male" value="male">
+            <label for="male">Male</label>
+            
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female">Female</label>
+        </div>
+        
+        <label for="phno">Enter Your Phone Number:</label>
+        <input type="number" name="phno" id="phno">
+        
+        <label for="dance_style">Select your preferred dance style:</label>
+        <select name="dance_style" id="dance_style">
+            <option value="">Select a style</option>
+            <option value="Salsa">Salsa</option>
+            <option value="Hip-Hop">Hip Hop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Contemporary">Contemporary</option>
+            <option value="Ballet">Ballet</option>
+            <option value="Classical Dance">Classical Dance</option>
+        </select>
+        
+        <div class="btn-group">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            var fname = document.getElementById("fname").value;
+            var age = document.getElementById("age").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var phno = document.getElementById("phno").value;
+            var dance_style = document.getElementById("dance_style").value;
+
+            var lettersWithSpace = /^[A-Za-z\s]+$/;
+            var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            if (fname == "" || !fname.match(lettersWithSpace) || fname.length < 6) {
+                alert("Please enter a valid name with minimum 6 characters.");
+                return false;
+            }
+
+            if (age == "" || isNaN(age) || age < 15 || age > 80) {
+                alert("Please enter a valid age between 15 and 80.");
+                return false;
+            }
+
+            if (username == "" || username.length < 6) {
+                alert("Please enter a valid username with minimum 6 characters.");
+                return false;
+            }
+
+            if (!password.match(passwordRegex)) {
+                alert("Please enter a valid password with minimum 8 characters, including at least one uppercase letter, one lowercase letter, and one number.");
+                return false;
+            }
+
+            if (!gender) {
+                alert("Please select your gender.");
+                return false;
+            }
+
+            if (phno == "" || phno.length != 10) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+
+            if (dance_style == "") {
+                alert("Please select your preferred dance style.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

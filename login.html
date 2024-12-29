@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-vector/realistic-dynamic-fog-background_23-2149111508.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        h4 {
+            text-align: center;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form name="login" action="login.jsp" method="POST" onsubmit="return validateForm()">
+        <label>Enter UserName:</label><br>
+        <input type="text" name="suname" id="suname"><br>
+        <label>Password:</label><br>
+        <input type="password" name="pwd" id="pwd"><br>
+        <input type="submit" value="Submit">
+        <br>
+        <h4>If you are a new user, <a href="register.html">Sign Up</a></h4>
+    </form>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById("suname").value;
+            var password = document.getElementById("pwd").value;
+
+            // Username validation
+            if (username.length < 6) {
+                alert("Username must contain at least 6 characters");
+                return false;
+            }
+
+            // Password validation
+            var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, and 1 number");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
